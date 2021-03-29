@@ -20,21 +20,22 @@ class Details extends Component {
     switch (status) {
       case Details.LOADING:
         el = (
-          <div className="alert alert-primary">
+          <div className="alert alert-primary mx-4">
             We are fetching workshops. Please wait
           </div>
         );
         break;
       case Details.LOADED:
         el = (
-            dataState.response.docs.map((each,idx)=>(
-                <ul className="my-4" key={idx}>  
-                    <li>{each.abstract}</li>
-                    <li>{each.snippet}</li>
-                    <li>{each.lead_paragraph}</li>
-                    <li>{each.source}</li>
-                </ul>
-               ))
+                <div className="my-4" > 
+                <h1 className='text-center font-italic font-weight-normal'>{dataState.response.docs[0].headline.main} </h1>
+                 <br></br>
+                 <i className='float-right'>{dataState.response.docs[0].byline.original}</i>  
+                 <i className='float-left'>Published on {dataState.response.docs[0].pub_date.slice(0, 10)}</i>
+                <hr className='my-5'/>
+                <p>{dataState.response.docs[0].abstract}</p>
+                <p>{dataState.response.docs[0].lead_paragraph}</p>
+                </div>
         );
         break;
       case Details.ERROR_LOADING:
