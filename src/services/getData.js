@@ -6,7 +6,7 @@ const baseUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json`
 async function getData(search,news_desk,section,type,fromDate,toDate){
     console.log(`${baseUrl}?q=${search}&fq=news_desk:${news_desk}&section_name:${section}&type_of_material:${type}&begin_date=${fromDate}&end_date=${toDate}&api-key=${apiKey}`);
     let videos = await  axios.get(`${baseUrl}?q=${search}&fq=news_desk:${news_desk}&section_name:${section}&type_of_material:${type}&begin_date=${fromDate}&end_date=${toDate}&api-key=${apiKey}`)
-   
+   console.log(videos.data)
     return videos.data
 }
 

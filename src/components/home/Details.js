@@ -27,15 +27,19 @@ class Details extends Component {
         break;
       case Details.LOADED:
         el = (
-                <div className="my-4" > 
-                <h1 className='text-center font-italic font-weight-normal'>{dataState.response.docs[0].headline.main} </h1>
-                 <br></br>
-                 <i className='float-right'>{dataState.response.docs[0].byline.original}</i>  
-                 <i className='float-left'>Published on {dataState.response.docs[0].pub_date.slice(0, 10)}</i>
-                <hr className='my-5'/>
-                <p>{dataState.response.docs[0].abstract}</p>
-                <p>{dataState.response.docs[0].lead_paragraph}</p>
-                </div>
+         
+          dataState.response.docs.map((each,idx)=>(
+            <div className="my-4" key={idx} > 
+            <h1 className='text-center font-italic font-weight-normal'>{each.headline.main} </h1>
+             <br></br>
+             <i className='float-right'>{each.byline.original}</i>  
+             <i className='float-left'>Published on {each.pub_date.slice(0, 10)}</i>
+            <hr className='my-5'/>
+            <p>{each.abstract}</p>
+            <p>{each.lead_paragraph}</p>
+            </div>
+           ))
+                
         );
         break;
       case Details.ERROR_LOADING:

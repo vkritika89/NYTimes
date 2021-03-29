@@ -1,16 +1,29 @@
 import React from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
+import Pagination from '../Pagination'
 function ShowResults( {dataState }){
 
+    console.log(dataState.response)
     const LOADING_DATA = "LOADING_DATA"
     const LOADED_DATA = "LOADED_DATA"
     const ERROR_LOADING_DATA = "ERROR_LOADING_DATA"
+    const [currentPage, setCurrentPage]= React.useState(1);
+    const [postsPerPage] = React.useState(2);
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    let currentPosts;
+    if(dataState.response.docs){
+        currentPosts = dataState.response.docs.slice(indexOfFirstPost, indexOfLastPost);}
+    console.log(currentPosts);
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     console.log(dataState.status)
 
     let el
-    console.log(dataState.response)
-
+    
     switch(dataState.status){
         case LOADING_DATA:
             if(dataState.response === "False"){
@@ -34,9 +47,10 @@ function ShowResults( {dataState }){
             }
             break;
         case LOADED_DATA:
-            el =  (
-                dataState.response.docs.map((each, idx) => (
-                    <div className="card my-4 mx-5 " key={idx}>
+            el =  (<React.Fragment> 
+{     
+                currentPosts.map((each, idx) => (
+               <div className="card my-4 mx-5 " key={idx}>
                         <div className="card-body">
                             <h4 className="card-title"> {each.headline.main}</h4>
                            
@@ -46,9 +60,17 @@ function ShowResults( {dataState }){
                              < p>{each.lead_paragraph}</p>
                             <Link to={"/" + each._id} className="btn btn-primary">Go to Article</Link>  
                         </div>
-                    </div>
-                ))  
-                )
+                    </div> 
+             )) } 
+             
+             <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={dataState.response.docs.length}
+                paginate={paginate}
+              /></React.Fragment> 
+            )
+
+            
             break;
         case ERROR_LOADING_DATA:
             el = (
@@ -65,8 +87,8 @@ function ShowResults( {dataState }){
             el = null
             break;
     }
-    return (
-        el
+    return ( 
+          el
     )
 }
 
