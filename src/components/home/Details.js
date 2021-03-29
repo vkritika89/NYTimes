@@ -21,7 +21,7 @@ class Details extends Component {
       case Details.LOADING:
         el = (
           <div className="alert alert-primary mx-4">
-            We are fetching workshops. Please wait
+            We are fetching details. Please wait
           </div>
         );
         break;
