@@ -35,7 +35,7 @@ function Search({getDataBySearch}){
            <label><b>Filter</b></label> 
            <div className="form-group">
            <label for="sel1">News Desk</label>
-            <select className="form-control w-25" id="sel1"  ref={newsRef}>
+            <select className="form-control w-50" id="sel1"  ref={newsRef}>
               <option value="">Choose Any</option>
               {news_desk.map(desk => {
                 return <option value={desk}>{desk}</option>;
@@ -44,7 +44,7 @@ function Search({getDataBySearch}){
           </div>
           <div className="form-group "> 
           <label for="sel2">Section</label> 
-            <select className="form-control w-25" id="sel2"  ref={sectionRef} >
+            <select className="form-control w-50" id="sel2"  ref={sectionRef} >
               <option value="">Choose Any</option>
               {sections.map(section => {
                 return <option value={section}>{section}</option>;
@@ -53,7 +53,7 @@ function Search({getDataBySearch}){
           </div> 
           <div className="form-group "> 
           <label for="sel3">Type</label>
-            <select className="form-control w-25"id="sel3" ref={typeRef}>
+            <select className="form-control w-50"id="sel3" ref={typeRef}>
               <option value="">Choose Any</option>
               {type.map(material => {
                 return <option value={material}>{material}</option>;
