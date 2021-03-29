@@ -1,14 +1,16 @@
 // rsf
-import React from "react"; 
-import SearchFilter from '../SearchFilter/SearchFilter';
-  
-import WorkshopsList from "../workshops-list/WorkshopsList"; 
+import React from "react";
+import Home  from "../home/Home"
+
+import { Route } from "react-router-dom";
+
+import Details from '../home/Details';
 
 function App(props) {
   return (
-    <div> 
-       <h1 className='mx-auto'>New York Times Articles</h1>
-       <WorkshopsList/> 
+    <div>
+      <Route path="/" component={Home} exact />
+      <Route path="/:id" component={Details} />
     </div>
   );
 }
